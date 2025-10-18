@@ -1,0 +1,1 @@
+export { SideMenuHeaderComponent } from "./side-menu-header.component";

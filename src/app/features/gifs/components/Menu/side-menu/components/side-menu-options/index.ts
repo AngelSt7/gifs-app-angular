@@ -1,0 +1,1 @@
+export { SideMenuOptionsComponent } from "./side-menu-options.component";

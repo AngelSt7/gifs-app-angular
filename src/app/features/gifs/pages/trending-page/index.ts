@@ -1,0 +1,1 @@
+export { default as TrendingPageComponent } from "./trending-page.component";
