@@ -1,22 +1,30 @@
 import { environment } from '@/environments';
-import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { ApiService } from '../../core/services/http.service';
+import { GiphyResponse } from '../interfaces';
+import { GifMapper } from '../mapper';
+import { map } from 'rxjs';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class GifService {
 
-  private http = inject(ApiService)
+  private http = inject(ApiService);
+  
+  trendingGifsLoading = signal(true)
 
-  loadTrendingGifs(){
-    this.http.get(`/gifs/trending`,{
-      params: {
-        api_key: environment.giphy_url,
-        limit: 20
-      }
-    })
-
-
+  getTrendingGifs() {
+    return this.http.get<GiphyResponse>('/gifs/trending', {
+      params: { api_key: environment.api_key, limit: 20 }
+    }).pipe(
+      map((response) => GifMapper.mapGiphy(response.data)) 
+    );
   }
 
+  serachGifs(query: string) {
+    return this.http.get<GiphyResponse>('/gifs/search', {
+      params: { api_key: environment.api_key, q: query, limit: 20 }
+    }).pipe(
+      map((response) => GifMapper.mapGiphy(response.data))
+    )
+  }
 }

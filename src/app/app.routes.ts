@@ -12,6 +12,10 @@ export const routes: Routes = [
             {
                 path: 'search',
                 loadComponent: () => import("./features/gifs/pages/search-page/search-page.component")
+            },
+            {
+                path: 'history/:query',
+                loadComponent: () => import("./features/gifs/pages/history-page/history-page.component")
             }
         ]
     },

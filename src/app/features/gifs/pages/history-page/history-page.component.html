@@ -1,0 +1,9 @@
+<h3 class="text-2xl font-bold">Mostrar gifs de: {{ params()?.['query'] }}</h3>
+<hr>
+
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-5">
+  @for (gif of gifsByKey(); track gif.id) {
+    <gif-list-item [gif]="gif" />
+  }
+</div>
+

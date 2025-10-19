@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '@/environments';
 
-// Extraemos los tipos exactos de Angular 👇
 type HttpGetOptions = Parameters<HttpClient['get']>[1];
 type HttpPostOptions = Parameters<HttpClient['post']>[2];
 type HttpPutOptions = Parameters<HttpClient['put']>[2];
